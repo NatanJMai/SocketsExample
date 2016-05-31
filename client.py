@@ -15,7 +15,7 @@ def connect(HOST, PORT, FILE):
 
 
 def main():
-   connect('10.1.1.29', 50008, "file.txt")
+   connect('localhost', 50008, "file.txt")
 
 if __name__ == '__main__':
    main()
