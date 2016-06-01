@@ -1,17 +1,2 @@
-blabla blabla
-bla	blabla
-bla	blabla
-bla	blabla
-balba	blabla
-lab	blabla
-abla	blabla
-a
-a
-
-a
-a
-a
-a
-a
-a
-a
+farinha 3 3.5
+feijão 4 5
