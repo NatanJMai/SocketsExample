@@ -1,21 +1,13 @@
 import socket
+from util import *
 
-def abort(msg):
-   print(msg)
-   exit()
-
-def read(line):
-   tot = 0
-   spl = line.split()
-
-   if spl != []: tot = float(spl[1]) * float(spl[2])
-   return tot
 
 def connect(HOST, PORT):
    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
       s.bind((HOST, PORT))
 
       while True:
+         tot = 0.0
          s.listen(1)
          
          try:
@@ -27,21 +19,23 @@ def connect(HOST, PORT):
          with conn:
             print('Connected by ', addr)
 
-            tot = 0.0
-
             while True:
-               rcve = (conn.recv(1024)).decode() #Receive and decode info
+               line = (conn.recv(1024)).decode() #Receive and decode info
                
-               if not rcve: break
+               if not line: break
+               tot += read(line)
+               var  = (str(tot)).encode()
+               
+               conn.sendall(var)
 
-               tot += read(rcve)
-               conn.sendall(rcve.encode())
+
+            
             print("Final Result-> ", tot)
 
 
 if __name__ == '__main__':
    HOST = ''
-   PORT = 50008
+   PORT = 50009
 
    # Main function
    connect(HOST, PORT)

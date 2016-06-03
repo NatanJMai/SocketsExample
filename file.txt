@@ -1,2 +1,12 @@
 farinha 3 5
-feijão 4 500
+feijão 4 50
+farinha 3 5
+feijão 4 50
+farinha 3 5
+feijão 4 50
+farinha 3 5
+feijão 4 50
+farinha 3 5
+feijão 4 50
+farinha 3 5
+feijão 4 50
