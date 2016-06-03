@@ -1,2 +1,2 @@
-farinha 3 3.5
-feijão 4 5
+farinha 3 5
+feijão 4 500
