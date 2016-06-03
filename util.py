@@ -1,3 +1,7 @@
+#!/usr/bin/python
+
+from threading import Thread
+
 def abort(msg):
    print(msg)
    exit()

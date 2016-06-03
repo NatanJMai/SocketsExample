@@ -1,5 +1,26 @@
-import socket
+#!/usr/bin/python
+
+import socket, threading
 from util import *
+
+class threads(Thread):
+   def __init__(self):
+      Thread.__init__(self)
+
+   def run(self, conn, addr, tot):
+      with conn:
+         print('Connected by ', addr)
+
+         while True:
+            line = (conn.recv(1024)).decode() #Receive and decode info
+            
+            if not line: break
+            tot += read(line)
+            var  = (str(tot)).encode()
+            
+            conn.sendall(var)
+
+         print("Final Result THREAD %s -> %0.2f" %(self.getName, tot))
 
 
 def connect(HOST, PORT):
@@ -16,21 +37,8 @@ def connect(HOST, PORT):
             abort("\nClosing.")
             return
 
-         with conn:
-            print('Connected by ', addr)
-
-            while True:
-               line = (conn.recv(1024)).decode() #Receive and decode info
-               
-               if not line: break
-               tot += read(line)
-               var  = (str(tot)).encode()
-               
-               conn.sendall(var)
-
-
-            
-            print("Final Result-> ", tot)
+         n_thread   = threads()
+         n_thread.run(conn, addr, 0)
 
 
 if __name__ == '__main__':
