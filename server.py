@@ -1,44 +1,46 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import socket, threading
 from util import *
 
 class threads(Thread):
-   def __init__(self):
+   def __init__(self, conn, addr):
       Thread.__init__(self)
+      self.conn = conn
+      self.addr = addr
 
-   def run(self, conn, addr, tot):
-      with conn:
-         print('Connected by ', addr)
+   def run(self):
+      with self.conn:
+         print('Connected -> ', self.addr)
+         tot = 0
 
          while True:
-            line = (conn.recv(1024)).decode() #Receive and decode info
+            line = (self.conn.recv(1024)).decode() #Receive and decode info
             
             if not line: break
             tot += read(line)
             var  = (str(tot)).encode()
             
-            conn.sendall(var)
-
-         print("Final Result THREAD %s -> %0.2f" %(self.getName, tot))
-
-
+            self.conn.sendall(var)
+         print("Final Result THREAD %s-> %0.2f" %  (self.getName(), tot))
+         
+         
 def connect(HOST, PORT):
    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
       s.bind((HOST, PORT))
 
       while True:
-         tot = 0.0
          s.listen(1)
          
          try:
             conn, addr = s.accept()
+            n_thread   = threads(conn, addr)
+            print("Created THREAD nr -> %s" % n_thread.getName())
+            n_thread.start()
+            
          except:
             abort("\nClosing.")
             return
-
-         n_thread   = threads()
-         n_thread.run(conn, addr, 0)
 
 
 if __name__ == '__main__':

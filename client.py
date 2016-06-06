@@ -1,4 +1,4 @@
-import socket
+import socket, sys
 
 def connect(HOST, PORT, FILE):
    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
@@ -25,7 +25,8 @@ def connect(HOST, PORT, FILE):
       
 
 def main():
-   print("Total -> ", connect('localhost', 50009, "file.txt"))
+   print(sys.argv[1])
+   print("Total -> ", connect('localhost', 50009, sys.argv[1]))
 
 if __name__ == '__main__':
    main()
