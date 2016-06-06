@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import socket, sys
 
 def connect(HOST, PORT, FILE):
@@ -27,6 +29,7 @@ def connect(HOST, PORT, FILE):
 def main():
    print(sys.argv[1])
    print("Total -> ", connect('localhost', 50009, sys.argv[1]))
+
 
 if __name__ == '__main__':
    main()

@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 
-import socket, threading
 from util import *
 
 class threads(Thread):
@@ -19,10 +18,10 @@ class threads(Thread):
             
             if not line: break
             tot += read(line)
-            var  = (str(tot)).encode()
+            var  = (str(round(tot, 2))).encode()
             
             self.conn.sendall(var)
-         print("Final Result THREAD %s-> %0.2f" %  (self.getName(), tot))
+         print("\n######################\nFinal Result THREAD %s-> %0.2f" %  (self.getName(), tot))
          
          
 def connect(HOST, PORT):
@@ -35,7 +34,7 @@ def connect(HOST, PORT):
          try:
             conn, addr = s.accept()
             n_thread   = threads(conn, addr)
-            print("Created THREAD nr -> %s" % n_thread.getName())
+            print("\n----------------------\nCreated THREAD nr -> %s" % n_thread.getName())
             n_thread.start()
             
          except:
