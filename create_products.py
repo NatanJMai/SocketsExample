@@ -2,7 +2,7 @@ import random, sys
 
 def create(number, file_products, file_result):
    f = open(file_products, 'r')
-   p = open(file_result, 'r+')
+   p = open(file_result, 'w')
    l = [i.strip('\n') for i in f]
 
    t = 0.0
@@ -14,5 +14,6 @@ def create(number, file_products, file_result):
       p.write(a)
 
    print("Total -> %0.2f" % t)
+   
 if __name__ == '__main__':
    create(int(sys.argv[1]), sys.argv[2], sys.argv[3])

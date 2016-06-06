@@ -1,15 +1,25 @@
 #!/usr/bin/python3
 
-import socket, sys
+import socket, sys, hashlib
+
+def hash(line):
+   m = hashlib.md5()
+   m.update(line.encode())
+   return m.digest()
 
 def connect(HOST, PORT, FILE):
    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
       try:
          s.connect((HOST, PORT))
+         a = str(HOST) + str(PORT)
+         print(a)
+         print(hash(a))
       except:
          print("Connection refused.")
          exit()
       
+
+
       with open(FILE, 'r') as f:
          for i in f:
             try:
@@ -27,8 +37,8 @@ def connect(HOST, PORT, FILE):
       
 
 def main():
-   print(sys.argv[1])
-   print("Total -> ", connect('localhost', 50009, sys.argv[1]))
+   print("Loading...")
+   print("Total -> ", connect('127.0.0.1', 50009, sys.argv[1]))
 
 
 if __name__ == '__main__':
