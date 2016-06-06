@@ -12,8 +12,10 @@ class threads(Thread):
    def run(self):
       with self.conn:
          a = str(self.addr[0]) + str(PORT)
-         print(a)
-         print(hash(str(self.addr[0]) + str(self.addr[1])))
+         r = hashlib.sha512(a.encode())
+
+         print(r.digest())
+         
          #print('Connected -> ', self.addr)
 
          tot = 0
@@ -48,7 +50,7 @@ def connect(HOST, PORT):
 
 
 if __name__ == '__main__':
-   HOST = ''
+   HOST = 'localhost'
    PORT = 50009
 
    # Main function

@@ -11,9 +11,11 @@ def connect(HOST, PORT, FILE):
    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
       try:
          s.connect((HOST, PORT))
-         a = str(HOST) + str(PORT)
-         print(a)
-         print(hash(a))
+         r   = hashlib.sha512((str(HOST) + str(PORT)).encode())
+         print(r.digest())
+         #a = str(HOST) + str(PORT)
+         #print(a)
+         #print(hash(a))
       except:
          print("Connection refused.")
          exit()
