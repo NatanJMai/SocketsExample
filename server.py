@@ -11,24 +11,22 @@ class threads(Thread):
 
    def run(self):
       with self.conn:
-         a = str(self.addr[0]) + str(PORT)
-         r = hashlib.sha512(a.encode())
-
-         print(r.digest())
+         print('Address -> ', self.addr)
          
-         #print('Connected -> ', self.addr)
-
          tot = 0
-         print(time.ctime())
+         #print("\nTIME Start - %s\n" % time.ctime())
          while True:
-            line = (self.conn.recv(1024)).decode() #Receive and decode info
-            
-            if not line: break
-            tot += read(line)
+            encpt = self.conn.recv(1024) #Receive and decode info
+            dcptd = decrypt(encpt, HOST, PORT)
+            #print("Rcve -> %s | %s" % (encpt, dcptd))
+
+            if not dcptd: break
+            tot += read(dcptd)
             var  = (str(round(tot, 2))).encode()
             self.conn.sendall(var)
-         print(time.ctime())
-         print("\n######################\nFinal Result THREAD %s-> %0.2f" %  (self.getName(), tot))
+
+         print("TIME End - Thread %s %s" % (time.ctime(), self.getName()))
+         print('----------------------\n')
          
          
 def connect(HOST, PORT):
@@ -43,7 +41,6 @@ def connect(HOST, PORT):
             n_thread   = threads(conn, addr)
             print("\n----------------------\nCreated THREAD nr -> %s" % n_thread.getName())
             n_thread.start()
-            
          except:
             abort("\nClosing.")
             return

@@ -1,29 +1,26 @@
 #!/usr/bin/python3
 
 import socket, hashlib
-from threading           import Thread
-from cryptography.fernet import Fernet
+from threading          import Thread
+from Crypto.Cipher      import AES
+from Crypto             import Random 
 
 def abort(msg):
    print(msg)
    exit()
 
 def read(line):
-   spl = line.split(',')
+   spl = line.split()
    return float(spl[-2]) * float(spl[-1]) if len(spl) >= 3 else 0.0
 
-def hash(line):
-   m = hashlib.md5()
-   m.update(line.encode())
-   return m.digest()
+def hash(HOST, PORT):
+   m = hashlib.sha256((str(HOST) + str(PORT)).encode())
+   f = m.digest()[0:16]
+   return f
 
-def crypt(line):
-   key = Fernet.generate_key()
-      
-   print("Key -> %s" % key)
-
-   f   = Fernet(key)
-
-   token = f.encrypt(line)
-   print(token)
-   
+def decrypt(line, HOST, PORT):
+   r = hash(HOST, PORT)
+   c = AES.new(r, AES.MODE_CFB, r) 
+   data = c.decrypt(line)  
+   data = data.decode('utf-8')
+   return data
