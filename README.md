@@ -5,11 +5,9 @@
 - The server receives a file with products, quantity and values to calculate and return the sum of them.
 
 ### Requirements
-crypto==1.4.1
-pycrypto==2.6.1
+* *sudo apt-get install python3-pip*
+* *pip3 install -r requirements.txt*
 
-sudo apt-get install python3-pip
-pip3 install -r requirements.txt
 
 ### Running
 First, we should create one file with products details. 
