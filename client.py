@@ -1,9 +1,11 @@
 #!/usr/bin/python3
 
-import socket, sys, hashlib
-from Crypto.Cipher import AES
-from Crypto        import Random 
+# NatanJMai
+# github.com/@NatanJMai
 
+import socket, sys, hashlib
+from Crypto.Cipher   import AES
+from Crypto          import Random 
 
 def hash(HOST, PORT):
    m = hashlib.sha256((str(HOST) + str(PORT)).encode())
@@ -14,7 +16,6 @@ def crypt(line, r):
    aes  = AES.new(r, AES.MODE_CFB, r) 
    data = line.encode('utf-8') 
    data = aes.encrypt(data) 
-
    return data
   
 
@@ -27,9 +28,9 @@ def connect(HOST, PORT, FILE):
          exit()
       
       with open(FILE, 'r') as f:
+         m = hash(HOST, PORT)
          for i in f:
             try:
-               m = hash(HOST, PORT)
                c = crypt(i, m)         
                print("Send -> %s" % (c))
                s.send(c)

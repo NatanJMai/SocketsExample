@@ -1,5 +1,8 @@
 import random, sys
 
+# NatanJMai
+# github.com/@NatanJMai
+
 def create(number, file_products, file_result):
    f = open(file_products, 'r')
    p = open(file_result, 'w')

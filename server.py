@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 
+# NatanJMai
+# github.com/@NatanJMai
+
 from util import *
 import time
 
@@ -14,10 +17,11 @@ class threads(Thread):
          print('Address -> ', self.addr)
          
          tot = 0
+         has = hash(HOST, PORT)
          #print("\nTIME Start - %s\n" % time.ctime())
          while True:
             encpt = self.conn.recv(1024) #Receive and decode info
-            dcptd = decrypt(encpt, HOST, PORT)
+            dcptd = decrypt(encpt, has)
             #print("Rcve -> %s | %s" % (encpt, dcptd))
 
             if not dcptd: break

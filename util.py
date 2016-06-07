@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 
+# NatanJMai
+# github.com/@NatanJMai
+
 import socket, hashlib
 from threading          import Thread
 from Crypto.Cipher      import AES
@@ -18,8 +21,7 @@ def hash(HOST, PORT):
    f = m.digest()[0:16]
    return f
 
-def decrypt(line, HOST, PORT):
-   r = hash(HOST, PORT)
+def decrypt(line, r):
    c = AES.new(r, AES.MODE_CFB, r) 
    data = c.decrypt(line)  
    data = data.decode('utf-8')
