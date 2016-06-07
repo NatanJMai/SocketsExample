@@ -10,24 +10,24 @@ First, we should create one file with products details.
 * *file_destination* is the target file for we use after.
 
 ```sh
-$ python create_products.py number_of_products list_of_products file_destination
+$ python3 create_products.py number_of_products list_of_products file_destination
 ```
 ```sh
-$ python server.py 
+$ python3 server.py host_ip port_number
 ```
 ```sh
-$ python client.py file_products
+$ python3 client.py file_products host_ip port_number
 ```
 
 ### Example
 ```sh
-$ python create_products.py 10 products.txt file3.txt
+$ python3 create_products.py 10 products.txt file3.txt
 ```
 ```sh
-$ python server.py
+$ python3 server.py localhost 50009
 ```
 ```sh
-$ python client file3.txt
+$ python3 client file3.txt localhost 50009
 ```
 
-*NatanJMai*
+NatanJMai

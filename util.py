@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 # NatanJMai
-# github.com/@NatanJMai
+# github.com/NatanJMai/SocketsExample
 
 import socket, hashlib
 from threading          import Thread

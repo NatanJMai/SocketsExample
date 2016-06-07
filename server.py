@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 
 # NatanJMai
-# github.com/@NatanJMai
+# github.com/NatanJMai/SocketsExample
 
 from util import *
-import time
+import time, sys
 
 class threads(Thread):
    def __init__(self, conn, addr):
@@ -51,8 +51,8 @@ def connect(HOST, PORT):
 
 
 if __name__ == '__main__':
-   HOST = 'localhost'
-   PORT = 50009
+   HOST = sys.argv[1]
+   PORT = int(sys.argv[2])
 
    # Main function
    connect(HOST, PORT)

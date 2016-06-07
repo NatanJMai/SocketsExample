@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 # NatanJMai
-# github.com/@NatanJMai
+# github.com/NatanJMai/SocketsExample
 
 import socket, sys, hashlib
 from Crypto.Cipher   import AES
@@ -32,7 +32,7 @@ def connect(HOST, PORT, FILE):
          for i in f:
             try:
                c = crypt(i, m)         
-               print("Send -> %s" % (c))
+               #print("Send -> %s" % (c))
                s.send(c)
                data = s.recv(1024)
             except:
@@ -48,7 +48,11 @@ def connect(HOST, PORT, FILE):
 
 def main():
    print("Loading...")
-   total = connect('localhost', 50009, sys.argv[1])
+   FILE = sys.argv[1]
+   HOST = sys.argv[2]
+   PORT = int(sys.argv[3])
+   
+   total = connect(HOST, PORT, FILE)
 
    print("\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n")
    print("| Total -> ", total)
