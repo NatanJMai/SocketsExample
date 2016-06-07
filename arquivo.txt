@@ -1,0 +1,10 @@
+Cotonete 4.0 2.67
+Detergente 69.0 8.61
+Atum 32.0 6.95
+Farinha de trigo 24.0 2.78
+Couve 57.0 4.2
+Óleo 27.0 3.83
+Molho de tomate 95.0 6.41
+Algodão 31.0 5.46
+Iogurte 60.0 9.23
+Palha de aço 55.0 2.35

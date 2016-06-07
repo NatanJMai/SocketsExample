@@ -1,0 +1,22 @@
+NatanJMai
+
+Módulos necessários:
+  python3-pip 		(sudo apt-get install python3-pip)
+  outros módulos 	(pip3 install -r requirements.txt)
+
+
+Opção de criar um arquivo com vários produtos, nesse caso 10 itens:
+  python3 create_products.py 10 products.txt arquivo.txt
+
+Em um terminal:
+  python3 server.py IP PORTA
+
+Em outro:
+  python3 client.py arquivo.txt IP PORTA
+
+----------------------------------------------------------------------
+
+Exemplo:
+  python3 create_products.py 10 products.txt arquivo.txt
+  python3 server.py localhost 50009
+  python3 client.py arquivo.txt localhost 50009
